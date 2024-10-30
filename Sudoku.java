@@ -232,7 +232,7 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
 
         }
 
-
+/*
         private int[] getRowValues(int row) {
 
                 assert row >= 1 && row <= 9: "row must be between 1 and 9";
@@ -271,11 +271,8 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
 
         }
 
-
-        private int[] getBoxValues(int row, int col) {
-
-
-        }
+*/
+        
 
 
 }
