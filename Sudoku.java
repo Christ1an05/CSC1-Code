@@ -430,7 +430,4 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
         return true;
 
         }
-
-
-
 }
