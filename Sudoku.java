@@ -227,24 +227,22 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
 
                 assert row >= 1 && row <= 9: "row must be between 1 and 9";
                 assert col >= 1 && col <= 9: "column must be between 1 and 9";
-                assert value >= 1 && value <= 9: "column must be between 1 and 9";
+                assert value >= 1 && value <= 9: "value must be between 1 and 9";
 
 
         }
 
-/*
-        private int[] getRowValues(int row) {
+
+        private ArrayList<Integer> getRowValues(int row) {
 
                 assert row >= 1 && row <= 9: "row must be between 1 and 9";
 
-                int[] rowValues = new int[];
-                int i = 0;
+                ArrayList<Integer> rowValues = new ArrayList<Integer>();
 
                 for(int j = 0; j < 9; j++) {
 
                         if(grid[row-1][j] != 0) {
-                                rowValues[i] = grid[row-1][j];
-                                i++;                   
+                        rowValues.add(grid[row-1][j]);                                         
                         }       
                 }
 
@@ -252,18 +250,17 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
 
         }
 
-        private int[] getColumnsValues(int col) {
+        private ArrayList<Integer> getColumnValues(int col) {
 
                 assert col >= 1 && col <= 9: "column must be between 1 and 9";
 
-                int[] colValues = new int[];
-                int j = 0;
+                ArrayList<Integer> colValues = new ArrayList<Integer>();
 
                 for(int i = 0; i < 9; i++) {
 
                         if(grid[i][col-1] != 0) {
-                                rowValues[j] = grid[i][col-1];
-                                j++;                   
+                                colValues.add(grid[i][col-1]);
+
                         }       
                 }
 
@@ -271,8 +268,169 @@ public Sudoku(String sudokuFile) throws FileNotFoundException  {
 
         }
 
-*/
-        
+
+        private ArrayList<Integer> getBoxValues(int row, int col) {
+
+                ArrayList<Integer> boxValues = new ArrayList<Integer>();
+
+                assert row >= 1 && row <= 9: "row must be between 1 and 9";
+                assert col >= 1 && col <= 9: "column must be between 1 and 9";
+
+                if(row - 1 >= 0 && row -1 <= 2 && col -1 >= 0 && col - 1 <= 2) { //checks if row,column is in box 1
+
+                        for(int i = 0; i < 3; i ++) {
+
+                                for(int j = 0; j < 3; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 0 && row -1 <= 2 && col -1 >= 3 && col -1  <= 5) {
+
+                        for(int i = 0; i < 3; i ++) {
+
+                                for(int j = 3; j < 6; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 0 && row -1 <= 2 && col -1 >= 6 && col -1  <= 8) {
+
+                        for(int i = 0; i < 3; i ++) {
+
+                                for(int j = 6; j < 9; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 3 && row -1 <= 5 && col -1 >= 0 && col -1  <= 2) {
+
+                        for(int i = 3; i < 6; i ++) {
+
+                                for(int j = 0; j < 3; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 3 && row -1 <= 5 && col -1 >= 3 && col -1  <= 5) {
+
+                        for(int i = 3; i < 6; i ++) {
+
+                                for(int j = 3; j < 6; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 3 && row -1 <= 5 && col -1 >= 6 && col -1  <= 8) {
+
+                        for(int i = 3; i < 6; i ++) {
+
+                                for(int j = 6; j < 9; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 6 && row -1 <= 8 && col -1 >= 0 && col -1  <= 2) {
+
+                        for(int i = 6; i < 9; i ++) {
+
+                                for(int j = 0; j < 3; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 6 && row -1 <= 8 && col -1 >= 3 && col -1  <= 5) {
+
+                        for(int i = 6; i < 9; i ++) {
+
+                                for(int j = 3; j < 6; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                else if(row - 1 >= 6 && row -1 <= 8 && col -1 >= 6 && col -1  <= 8) {
+
+                        for(int i = 6; i < 9; i ++) {
+
+                                for(int j = 6; j < 9; j++) {
+                                        if(grid[i][j] != 0) {
+                                                boxValues.add(grid[i][j]);
+                                        }
+                                }
+                        }
+                }
+
+                return boxValues;
+
+
+        } //end box method
+
+
+        public boolean isValid(int row, int col, int val) {
+
+
+        if(val < 1 || val > 9) {
+                return false;
+        }
+
+
+        if(getValue(row, col) != 0) {
+                return false;
+        }
+
+        else {
+
+                for(int i = 0; i < getBoxValues(row, col).size(); i ++) {
+
+                        if(getBoxValues(row, col).get(i) == val) {
+                                return false;
+                        }               
+                }
+
+                for(int i = 0; i < getRowValues(row).size(); i ++) {
+
+                        if(getRowValues(row).get(i) == val) {
+                                return false;
+                        }
+                }
+
+                for(int i = 0; i < getColumnValues(col).size(); i ++) {
+
+                        if(getColumnValues(col).get(i) == val) {
+                                return false;
+                        }
+                }
+
+        }
+
+        return true;
+
+        }
+
 
 
 }
