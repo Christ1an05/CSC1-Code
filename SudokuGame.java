@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+mport java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -11,15 +11,34 @@ class SudokuGame {
         Scanner input = new Scanner(System.in);
 
 
+
+
+        while(true) {
+
         System.out.println(sudoku);
+        System.out.println()
         System.out.print("Enter the next row, column, and value (separated by spaces): ");
 
         int inpRow = input.nextInt();
         int inpCol = input.nextInt();
-        int inValue = input.nextInt();
+        int inpValue = input.nextInt();
 
-        sudoku.setValue(inpRow, inpCol, inValue);
-        System.out.println(sudoku);
+        //System.out.println(sudoku.getBoxValues(inpRow, inpCol));
+        //System.out.println(sudoku.getRowValues(inpRow));
+        //System.out.println(sudoku.getColumnValues(inpCol));
+
+                if(sudoku.isValid(inpRow, inpCol, inpValue)) {
+
+                        sudoku.setValue(inpRow, inpCol, inpValue);
+                        System.out.println(sudoku);
+                }
+
+                else {
+
+                        System.out.println("Invalid move");
+
+                }
+        }
 
 
 
