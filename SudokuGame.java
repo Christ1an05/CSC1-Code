@@ -1,4 +1,4 @@
-mport java.io.FileNotFoundException;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -16,7 +16,7 @@ class SudokuGame {
         while(true) {
 
         System.out.println(sudoku);
-        System.out.println()
+        System.out.println();
         System.out.print("Enter the next row, column, and value (separated by spaces): ");
 
         int inpRow = input.nextInt();
