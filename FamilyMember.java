@@ -59,8 +59,35 @@ public class FamilyMember
      */
     public ArrayList<FamilyMember> getChildren()
     {
-        return this.children;
+         // Initialize the result list
+    ArrayList<String> longestLineage = new ArrayList<>();
+
+    // Helper method to find the longest lineage recursively
+    longestLineageHelper(this, new ArrayList<>(), longestLineage);
+
+    return longestLineage;
+}
+
+// Recursive helper method
+private void longestLineageHelper(FamilyMember member, ArrayList<String> currentLineage, ArrayList<String> longestLineage) {
+    // Add the current member's name to the lineage
+    currentLineage.add(member.getName());
+
+    // Check if this is a leaf node (no children)
+    if (member.getChildren().isEmpty()) {
+        // Update the longest lineage if the current one is longer
+        if (currentLineage.size() > longestLineage.size()) {
+            longestLineage.clear();
+            longestLineage.addAll(currentLineage);
+        }
+    } else {
+        // Recur for each child
+        for (FamilyMember child : member.getChildren()) {
+            longestLineageHelper(child, new ArrayList<>(currentLineage), longestLineage);
+        }
     }
+}
+    
     
     /*
      * Method for adding a new parent-child relationship to the tree.
