@@ -135,7 +135,21 @@ private void longestLineageHelper(FamilyMember member, ArrayList<String> current
     public boolean hasDescendant(String name)
     {
         // DON'T MODIFY THE CODE ABOVE THIS
-        return false; // remove this line and fill in the body of the method
+         // Check if the current member's name matches the input
+    if (this.getName().equals(name)) {
+        return true;
+    }
+
+    // Recursively check each child to see if any of them have the matching name
+    for (FamilyMember child : this.getChildren()) {
+        if (child.hasDescendant(name)) {
+            return true;
+        }
+    }
+
+    // If no match is found, return false
+    return false;
+}
         // DON'T MODIFY THE CODE BELOW THIS
     }
     
