@@ -57,16 +57,36 @@ public class FamilyMember
      *
      * @return children - the list of family members who are children of this object
      */
-    public ArrayList<FamilyMember> getChildren()
-    {
-         // Initialize the result list
+   public ArrayList<String> longestLineage() {
+    // Initialize the result list
     ArrayList<String> longestLineage = new ArrayList<>();
 
-    // Helper method to find the longest lineage recursively
+    // Call the helper method to populate the longest lineage
     longestLineageHelper(this, new ArrayList<>(), longestLineage);
 
     return longestLineage;
 }
+
+// Recursive helper method
+private void longestLineageHelper(FamilyMember member, ArrayList<String> currentLineage, ArrayList<String> longestLineage) {
+    // Add the current member's name to the lineage
+    currentLineage.add(member.getName());
+
+    // Check if this is a leaf node (no children)
+    if (member.getChildren().isEmpty()) {
+        // Update the longest lineage if the current one is longer
+        if (currentLineage.size() > longestLineage.size()) {
+            longestLineage.clear();
+            longestLineage.addAll(currentLineage);
+        }
+    } else {
+        // Recur for each child
+        for (FamilyMember child : member.getChildren()) {
+            longestLineageHelper(child, new ArrayList<>(currentLineage), longestLineage);
+        }
+    }
+}
+
 
 // Recursive helper method
 private void longestLineageHelper(FamilyMember member, ArrayList<String> currentLineage, ArrayList<String> longestLineage) {
@@ -136,6 +156,7 @@ private void longestLineageHelper(FamilyMember member, ArrayList<String> current
     {
         // DON'T MODIFY THE CODE ABOVE THIS
          // Check if the current member's name matches the input
+    // Check if the current member's name matches the input
     if (this.getName().equals(name)) {
         return true;
     }
@@ -146,6 +167,11 @@ private void longestLineageHelper(FamilyMember member, ArrayList<String> current
             return true;
         }
     }
+
+    // If no match is found, return false
+    return false;
+}
+
 
     // If no match is found, return false
     return false;
